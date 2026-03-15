@@ -12,19 +12,22 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 
+
+st.set_page_config("AI Resume Analyzer", "📊", layout="wide")
+
 st.markdown("""<meta name="google-site-verification" content="Ur5oXAnC1cNCwVqD3_z7ASYo7oKQYKDV8KNH_xiXElg" />""",unsafe_allow_html=True)
 # =====================
 # DATABASE CONFIG
 # =====================
-DB_CONFIG = {
-    "host": "localhost",
-    "database": "resume_analyzer",
-    "user": "postgres",
-    "password": "SUBHADRA@19092005",
-    "port": "5432"
-}
+import os
+DATABASE_URL = os.getenv("DATABASE_URL")
 def connect_db():
-    return psycopg2.connect(**DB_CONFIG)
+    try:
+        return psycopg2.connect(DATABASE_URL)
+    except Exception as e:
+        st.error(f"Database connection error: {e}")
+        return None
+
 # =====================
 # NLTK SETUP
 # =====================
@@ -187,7 +190,7 @@ def analyze_resumes(resumes, jd):
 def main():
     init_db()
 
-    st.set_page_config("AI Resume Analyzer", "📊", layout="wide")
+
 
     st.markdown("""
 <style>
