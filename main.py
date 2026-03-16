@@ -19,25 +19,30 @@ st.markdown("""<meta name="google-site-verification" content="Ur5oXAnC1cNCwVqD3_
 # =====================
 # DATABASE CONFIG
 # =====================
+
+# =====================
+# DATABASE CONFIG (FIXED)
+# =====================
 import os
+
 DATABASE_URL = os.getenv("DATABASE_URL")
+DB_CONFIG = {
+    "host": "dpg-d6rarl7afjfc73f3uhi0-a.oregon-postgres.render.com",
+    "database": "resume_analyzer_o60u",
+    "user": "subhadra_admin",
+    "password": "U92ocib5VdbcGj7qEp94x2EOlDT947gC",
+    "port": "5432",
+    "sslmode": "require"
+}
+
 def connect_db():
     try:
-        return psycopg2.connect(DATABASE_URL)
+        if DATABASE_URL:
+            return psycopg2.connect(DATABASE_URL)
+        return psycopg2.connect(**DB_CONFIG)
     except Exception as e:
-        st.error(f"Database connection error: {e}")
-        return none
-
-DB_CONFIG = {
-    "host": "dpg-d6rarl7afjfc73f3uhi0-a",
-    "database": "resume_analyzer",
-    "user": "postgres",
-    "password": "U92ocib5VdbcGj7qEp94x2EOlDT947gC",
-    "port": "5432"
-}
-def connect_db():
-    return psycopg2.connect(**DB_CONFIG)
-    
+        st.error(f"❌ Database connection error: {e}")
+        return None
 # =====================
 # NLTK SETUP
 # =====================
@@ -211,6 +216,13 @@ color:beige;
 :root{
 primaryColor="#54acbf";
 }
+
+/* Force the primary button to be Blue instead of Red */
+div.stButton > button[kind="primary"] {
+    background-color: #54acbf !important;
+    border: none !important;
+}
+
 .stApp {
 background: linear-gradient(
 to left,
@@ -289,6 +301,8 @@ color: white !important;
 
             st.session_state["df"] = df
             save_to_db(names, scores, job_description, processed)
+
+            st.toast("✅ Data successfully synced to Database",icon='☁️')
 
             st.subheader("📊 Results")
             st.dataframe(df, use_container_width=True, hide_index=True)
