@@ -32,7 +32,7 @@ DB_CONFIG = {
     "host": "dpg-d6rarl7afjfc73f3uhi0-a",
     "database": "resume_analyzer",
     "user": "postgres",
-    "password": "SUBHADRA@19092005",
+    "password": "U92ocib5VdbcGj7qEp94x2EOlDT947gC",
     "port": "5432"
 }
 def connect_db():
@@ -207,6 +207,9 @@ def main():
 *{
 font-family:bold ;
 color:beige;
+}
+:root{
+primaryColor="#54acbf";
 }
 .stApp {
 background: linear-gradient(
