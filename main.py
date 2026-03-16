@@ -32,7 +32,6 @@ DB_CONFIG = {
     "host": "dpg-d6rarl7afjfc73f3uhi0-a",
     "database": "resume_analyzer",
     "user": "postgres",
-    "username" :"subhadra_admin",
     "password": "SUBHADRA@19092005",
     "port": "5432"
 }
