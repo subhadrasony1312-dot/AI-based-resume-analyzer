@@ -26,8 +26,19 @@ def connect_db():
         return psycopg2.connect(DATABASE_URL)
     except Exception as e:
         st.error(f"Database connection error: {e}")
-        return None
+        return none
 
+DB_CONFIG = {
+    "host": "dpg-d6rarl7afjfc73f3uhi0-a",
+    "database": "resume_analyzer",
+    "user": "postgres",
+    "username" :"subhadra_admin",
+    "password": "SUBHADRA@19092005",
+    "port": "5432"
+}
+def connect_db():
+    return psycopg2.connect(**DB_CONFIG)
+    
 # =====================
 # NLTK SETUP
 # =====================
