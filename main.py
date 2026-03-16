@@ -46,15 +46,19 @@ def connect_db():
 # =====================
 # NLTK SETUP
 # =====================
-try:
-    nltk.data.find("tokenizers/punkt")
-except LookupError:
-    nltk.download("punkt")
+# =====================
+# NLTK SETUP (UPDATED)
+# =====================
 
-try:
-    nltk.data.find("corpora/stopwords")
-except LookupError:
-    nltk.download("stopwords")
+def download_nltk_resources():
+    resources = ["punkt", "punkt_tab", "stopwords", "wordnet"]
+    for res in resources:
+        try:
+            nltk.download(res, quiet=True)
+        except Exception as e:
+            print(f"Error downloading {res}: {e}")
+
+download_nltk_resources()
 
 # =====================
 # DATABASE FUNCTIONS
