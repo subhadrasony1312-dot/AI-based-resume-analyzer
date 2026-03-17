@@ -14,7 +14,7 @@ from nltk.tokenize import word_tokenize
 
 
 st.set_page_config("AI Resume Analyzer", "📊", layout="wide")
-
+st.markdown("""<meta name="google-site-verification" content="PlWO6xiT8wkQyAJXmxrFBg95faZQ9ClQQyzkOZjSZKk" />""",unsafe_allow_html=True)
 st.markdown("""<meta name="google-site-verification" content="Ur5oXAnC1cNCwVqD3_z7ASYo7oKQYKDV8KNH_xiXElg" />""",unsafe_allow_html=True)
 # =====================
 # DATABASE CONFIG
